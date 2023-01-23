@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap" rel="stylesheet">
+
+    <title>Encriptador - Challenge Alura</title>
+
+</head>
+<body>
+
+    <header>
+        <img src="Imagenes/logo.png" alt="Logo de Alura">
+    </header>
+    
+    <main>
+
+        <section class="division_escritura">
+            
+            <textarea type="text" id="Encriptado" placeholder="- Ingresa el texto aquí -" autofocus></textarea>
+            
+            <div class="contenedor_botones">
+
+                <button type="button" class="boton_encriptado" id="boton_encriptado">Encriptar</button>
+                <button type="button" class="boton_desencriptado" id="boton_desencriptado">Desencriptar</button>
+
+            </div>
+            <div class="advertencia">
+                <p>⊛ Solo caracteres en minusculas y sin acentos</p>
+
+            </div>
+            
+        
+        </section>
+
+        <section class="division_resultado">
+
+            <div class="imagen" id="imagen">
+                <img src="Imagenes/Muñeco.png" alt="Imagen de busqueda de texto">
+            </div>
+            <div class="mensaje" id="mensaje">
+                <h3>Ningún mensaje encontrado</h3>
+            </div >
+            <div class="parrafo" id="parrafo">
+                Ingrese el texto que deses encriptar o desencriptar
+            </div>
+
+            <textarea name="resultado" id="Desencriptado" cols="30" rows="10"></textarea>
+            <button type="button" class="boton_copiar" id="boton_copiar">Copiar</button>
+
+        </section>
+
+    </main>
+   
+    
+</body>
+
+<footer>
+   <p>Proyecto por: Ismael Guevara Montebello - Challenge One Codificador 4 -</p> 
+</footer>
+
+<script>
+   
+    /*document.getElementById("Desencriptado").style.display = "none";*/
+    /*document.getElementById("boton_copiar").style.display = "none";*/
+
+    function encriptar() {
+
+        var frase = document.getElementById("Encriptado").value.toLowerCase();
+
+        var textoEncriptado = frase.replace(/e/img, "enter");  
+        var textoEncriptado = textoEncriptado.replace(/i/img, "imes"); 
+        var textoEncriptado = textoEncriptado.replace(/a/img, "ai");
+        var textoEncriptado = textoEncriptado.replace(/o/img, "ober");
+        var textoEncriptado = textoEncriptado.replace(/u/img, "ufat");
+
+        document.getElementById("Desencriptado").innerHTML = textoEncriptado;
+
+        //i= Para que la funcion reconozca letras Mayusculas y minusculas.
+        //g = Para que la funcion tome en cuenta toda la frase o palabra.
+        //m = Para que se tomen en cuenta multiples lineas.
+
+        document.getElementById("imagen").style.display = 'none';
+        document.getElementById("mensaje").style.display = 'none';
+        document.getElementById("parrafo").style.display = 'none';
+        document.getElementById("Desencriptado").style.display = "show";
+        document.getElementById("Desencriptado").style.display = "inherit";
+        document.getElementById("boton_copiar").style.display = "show";
+        document.getElementById("boton_copiar").style.display = "inherit";
+    }   
+
+    function desencriptar() {
+
+        var frase = document.getElementById("Encriptado").value.toLowerCase();
+
+        var textoEncriptado = frase.replace(/enter/img, "e");
+        var textoEncriptado = textoEncriptado.replace(/imes/img, "i");
+        var textoEncriptado = textoEncriptado.replace(/ai/img, "a");
+        var textoEncriptado = textoEncriptado.replace(/ober/img, "o");
+        var textoEncriptado = textoEncriptado.replace(/ufat/img, "u");
+
+        document.getElementById("Desencriptado").innerHTML = textoEncriptado;
+    }   
+
+    function copiar() {
+        var contenido = document.querySelector("#Desencriptado");
+        contenido.select()
+        document.execCommand("copy");
+    }
+
+    var btn = document.querySelector("#boton_encriptado");
+    btn.onclick = encriptar;
+
+    var btn2 = document.querySelector("#boton_desencriptado");
+    btn2.onclick = desencriptar;
+
+    var btn3 = document.querySelector("#boton_copiar");
+    btn3.onclick = copiar;
+
+</script>
+</html>
